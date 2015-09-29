@@ -1,0 +1,39 @@
+<ion-view view-title="Playlists">
+  <!-- Uncomment to let the controller called 'FuelController' work as soon as the page loads-->
+    <ion-content  ng-controller="FuelController">
+
+
+      <div class="card" ng-repeat="playlist in playlists" >
+       <a class="item item-text-wrap" href="#/app/playlists/{{playlist.id}}"> f{{playlist.title}}</a>
+      </div>
+
+    <!-- creating omc cards
+    <div class="card" ng-repeat="omc in omcs">
+      <a class="item item-text-wrap" href="#/app/playlists/{{omc.name}}"> {{body}}</a>
+    </div>-->
+
+      <!--Experimental content to pull freshly pressed
+      <ion-refresher pulling-text="Reload blogs" on-refresh="reload()"></ion-refresher>
+                <ion-list>
+                    <ion-item ng-repeat="b in blogs" ng-click="show($index)">
+                        <img ng-src="{{b.avatar_URL}}" class="thumbnail">
+                        <h2 ng-bind-html="b.title"></h2>
+                        <p>{{b.name}}</p>
+                        <ion-option-button class="button-energized" ng-click="share($index)">
+                            Share
+                        </ion-option-button>
+                    </ion-item>
+                </ion-list>
+                -->
+      <button class="button" ng-click="getData()">Do Something</button>
+      <br>
+      name: {{omcs[0].id}}
+
+      <!-- Trying out loop since the JSON is now working -->
+      <div class="card" ng-repeat="omc in omcs" >
+        <a class="item item-text-wrap" href="#/app/playlists/{{playlist.id}}"> {{omc.name}}</a>
+      </div>
+
+  </ion-content>
+</ion-view>
+
