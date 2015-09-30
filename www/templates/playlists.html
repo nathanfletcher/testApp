@@ -1,12 +1,30 @@
 <ion-view view-title="Playlists">
   <!-- Uncomment to let the controller called 'FuelController' work as soon as the page loads-->
-    <ion-content  ng-controller="FuelController">
+    <ion-content >
+      <!--Loading spinner
+      <script type="text/javascript">
+        function hideshow(which){
+        if (!document.getElementById)
+        return
+        if (which.style.display=="block")
+        which.style.display="none"
+        else
+        which.style.display="block"
+        }
+      </script>
 
+      <div >Now you see me</div>
 
+      <div id="adiv" style="font:24px bold; display: block; margin:auto 0;" class="card bar bar-stable" >
+        <ion-spinner></ion-spinner>
+      </div>
+      -->
+
+      <!--
       <div class="card" ng-repeat="playlist in playlists" >
        <a class="item item-text-wrap" href="#/app/playlists/{{playlist.id}}"> f{{playlist.title}}</a>
       </div>
-
+      -->
     <!-- creating omc cards
     <div class="card" ng-repeat="omc in omcs">
       <a class="item item-text-wrap" href="#/app/playlists/{{omc.name}}"> {{body}}</a>
@@ -25,13 +43,16 @@
                     </ion-item>
                 </ion-list>
                 -->
+      <!--
       <button class="button" ng-click="getData()">Do Something</button>
       <br>
       name: {{omcs[0].id}}
+      -->
 
       <!-- Trying out loop since the JSON is now working -->
       <div class="card" ng-repeat="omc in omcs" >
-        <a class="item item-text-wrap" href="#/app/playlists/{{playlist.id}}"> {{omc.name}}</a>
+        <a class="item item-text-wrap" href="#/app/playlists/{{playlist.id}}"> {{omc.name}}<h3 id="thePrice" style="float:right;">GHS {{omc.petrol}}</h3></a>
+
       </div>
 
   </ion-content>

@@ -53,6 +53,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+
 })
 
 
@@ -68,6 +69,9 @@ angular.module('starter.controllers', [])
           alert("Something went wrong in the custom Nathan controller");
           return;
         })
+
+
+
   /*
   $scope.omcs = [
     { title: 'Reggae', id: 1 },
@@ -79,7 +83,6 @@ angular.module('starter.controllers', [])
   ];
   */
 });
-
 
 
 

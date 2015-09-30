@@ -3,6 +3,10 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/www/js/app.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/js/controllers.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/js/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/templates/diesel.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/templates/kerosene.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/templates/playlist.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/templates/playlists.html" charset="UTF-8" />
   </component>
 </project>

@@ -54,11 +54,31 @@ var testFetch = angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent': {
           templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          //controller: 'PlaylistsCtrl'
+          controller: 'FuelController'
         }
       }
     })
-
+       .state('app.diesel', {
+                    url: '/diesel',
+                    views: {
+                      'menuContent': {
+                        templateUrl: 'templates/diesel.html',
+                        //controller: 'PlaylistsCtrl'
+                        controller: 'FuelController'
+                      }
+                    }
+                  })
+                  .state('app.kerosene', {
+                                      url: '/kerosene',
+                                      views: {
+                                        'menuContent': {
+                                          templateUrl: 'templates/kerosene.html',
+                                          //controller: 'PlaylistsCtrl'
+                                          controller: 'FuelController'
+                                        }
+                                      }
+                                    })
   .state('app.single', {
     url: '/playlists/:playlistId',
     views: {
@@ -72,36 +92,3 @@ var testFetch = angular.module('starter', ['ionic', 'starter.controllers'])
   $urlRouterProvider.otherwise('/app/playlists');
 });
 
-
-testFetch.controller("FuelController",function($scope,$http){
-
-  $scope.getData = function (){
-  //https://script.google.com/macros/s/AKfycbx2tfQe5F4pEOdFpf99DM8rMWtg_B1JguFxugBIUPWz76IbEpk/exec -- this exec public works
-  //https://script.googleusercontent.com/macros/echo?user_content_key=ufZ2RGT4ZbIHnlTLxtGnPxhPklcF6s8iXRSpyVLEpriUujW2KCbETKIugf5Q1kWhi-6g39wg8baH0Jc8nww_ZEh8omlitHHCm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNB6anUFLacWNXkzaa_kPlm3sFhxsxz4ugmmNikkWj5bxz8Rd12PZMwnOFpDL6kfaA&lib=MTJMUDZTypXfnHVya28c7JCwsu2EIHoHF
-    $http.get("https://script.google.com/macros/s/AKfycbx2tfQe5F4pEOdFpf99DM8rMWtg_B1JguFxugBIUPWz76IbEpk/exec")
-      .success(function(data){
-        $scope.omcs = data;
-        //alert(omcs[0].name);
-        //alert($scope.body);
-      })
-      .error(function(data){
-        $scope.omcName = "Errorrrr";
-        alert("Unsuccessful");
-        //alert("Something went wrong with Array in the function in app.js");
-      })
-  }
-
-
-  /*
-  //https://cors-test.appspot.com/test
-  $http.get(' unction(resp) {
-
-      $scope.userID = resp.data.body;
-      alert('hello '+$scope.userID);
-    }, function(err) {
-      console.error('ERR', err);
-      alert('Error');
-      // err.status will contain the status code
-    })
-    */
-});
