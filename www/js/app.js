@@ -49,36 +49,46 @@ var testFetch = angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          //controller: 'PlaylistsCtrl'
-          controller: 'FuelController'
-        }
+  .state('app.playlists', {
+    url: '/playlists',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/playlists.html',
+        //controller: 'PlaylistsCtrl'
+        controller: 'FuelController'
       }
-    })
-       .state('app.diesel', {
-                    url: '/diesel',
-                    views: {
-                      'menuContent': {
-                        templateUrl: 'templates/diesel.html',
-                        //controller: 'PlaylistsCtrl'
-                        controller: 'FuelController'
-                      }
-                    }
-                  })
-                  .state('app.kerosene', {
-                                      url: '/kerosene',
-                                      views: {
-                                        'menuContent': {
-                                          templateUrl: 'templates/kerosene.html',
-                                          //controller: 'PlaylistsCtrl'
-                                          controller: 'FuelController'
-                                        }
-                                      }
-                                    })
+    }
+  })
+  .state('app.diesel', {
+     url: '/diesel',
+     views: {
+       'menuContent': {
+       templateUrl: 'templates/diesel.html',
+       //controller: 'PlaylistsCtrl'
+       controller: 'FuelController'
+       }
+     }
+  })
+  .state('app.kerosene', {
+      url: '/kerosene',
+      views: {
+         'menuContent': {
+           templateUrl: 'templates/kerosene.html',
+           //controller: 'PlaylistsCtrl'
+           controller: 'FuelController'
+          }
+        }
+      })
+  .state('app.omcs', {
+        url: '/omcs',
+        views: {
+           'menuContent': {
+             templateUrl: 'templates/omcs.html',
+             //controller: 'FuelController'
+             controller: 'AllOMCController'
+            }
+          }
+        })
   .state('app.single', {
     url: '/playlists/:playlistId',
     views: {
@@ -87,8 +97,107 @@ var testFetch = angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'PlaylistCtrl'
       }
     }
+  })
+  .state('app.chats', {
+        url: '/chats',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/tab-chats.html',
+            controller: 'ChatsCtrl'
+          }
+        }
+  })
+  .state('app.chat-detail', {
+        url: '/chats/:chatId',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/chat-detail.html',
+            controller: 'ChatDetailCtrl'
+          }
+        }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
-});
+})
+.service('omcdata', function($http){
+    /*
+    return{
+            omcs: function(){
+                            var stuff = [{"name":"fake omc 1", "price":23}];
+                            $http.get("http://localhost:8888/omcread")
+                                    .success(function(dataobj){
+                                        var stuff = dataobj;
+                                        })
+                                    .error(function(dataobj){
+                                    }),
+            getOmcs: function(){
+                        return this.omcs
+                    },
+
+            getOmc: function (omcId){
+                        var dfd = $q.defer()
+                        this.omcs.forEach(function (omc){
+                            if(omc.name === omcId) dfd.resolve(omc)
+                        })
+                        return dfd.promise
+                    }
+                        }
+
+    }
+    */
+    //var fillings=[{'name':'Shell','petrol':99.0,'diesel':99.0,'kerosene':99.0}];
+
+    this.getAllOmcs = function(){
+        $http.get("http://localhost:8888/omcread")
+        .success(function(dataobj){
+            var omcs = dataobj;
+            return dataobj;
+            })
+        .error(function(dataobj){
+        })
+    };
+
+    //return fillings;
+})
+.controller("FuelController", function($scope,$http,$ionicLoading){
+  $ionicLoading.show({template:"Loading prices..."});
+
+  //Im puting the main operation outside the function so that it runs immediately
+  //setTimeout(this, 3000)
+  $http.get("http://127.0.0.1:8888/omcread")
+        .success(function(data){
+          $scope.omcs = data;
+          //alert(omcs[0].name);
+          //alert($scope.body);
+        })
+        .error(function(data){
+          $scope.err = "Check Iternet connection";
+          alert("Please check your Internet connection and try again");
+          //alert("Something went wrong with Array in the function in app.js");
+        })
+        $ionicLoading.hide();
+  $scope.getData = function (){
+  /*
+  $http.get("https://script.google.com/macros/s/AKfycbx2tfQe5F4pEOdFpf99DM8rMWtg_B1JguFxugBIUPWz76IbEpk/exec")
+      .success(function(data){
+        $scope.omcs = data;
+        //alert(omcs[0].name);
+        //alert($scope.body);
+      })
+      .error(function(data){
+        $scope.omcName = "Errorrrr";
+        //alert("Unsuccessful");
+        //alert("Something went wrong with Array in the function in app.js");
+      })*/
+  }
+
+})
+.controller("AllOMCController", function($scope, omcdata){
+    var objarr = [];
+    //objarr = list;
+    $scope.fill = omcdata;
+    //$scope.fs = omcdata.getOmcData;
+    alert($scope.fill[0].name);
+  }
+);
 

@@ -73,47 +73,33 @@ function FPSvc($http, $rootScope) {
     }
 }
 
-
-
-testFetch.controller("FuelController", function($scope,$http,$ionicLoading){
-  $ionicLoading.show({template:"Loading prices..."})
-  //Im puting the main operation outside the function so that it runs immediately
-
+function refreshPrices(){
+/*
   $http.get("https://script.google.com/macros/s/AKfycbx2tfQe5F4pEOdFpf99DM8rMWtg_B1JguFxugBIUPWz76IbEpk/exec")
         .success(function(data){
-          $scope.omcs = data;
-          //alert(omcs[0].name);
-          //alert($scope.body);
+          $scope.fxnOmc = data;
         })
         .error(function(data){
-          $scope.omcName = "Errorrrr";
-          //alert("Unsuccessful");
-          //alert("Something went wrong with Array in the function in app.js");
+        alert("failed");
+          $scope.err = "Refreshing failed due to bad connection";
         })
-        $ionicLoading.hide();
-  $scope.getData = function (){
-  //https://script.google.com/macros/s/AKfycbx2tfQe5F4pEOdFpf99DM8rMWtg_B1JguFxugBIUPWz76IbEpk/exec -- this exec public works
-  //https://script.googleusercontent.com/macros/echo?user_content_key=ufZ2RGT4ZbIHnlTLxtGnPxhPklcF6s8iXRSpyVLEpriUujW2KCbETKIugf5Q1kWhi-6g39wg8baH0Jc8nww_ZEh8omlitHHCm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNB6anUFLacWNXkzaa_kPlm3sFhxsxz4ugmmNikkWj5bxz8Rd12PZMwnOFpDL6kfaA&lib=MTJMUDZTypXfnHVya28c7JCwsu2EIHoHF
-    /*$http.get("https://script.google.com/macros/s/AKfycbx2tfQe5F4pEOdFpf99DM8rMWtg_B1JguFxugBIUPWz76IbEpk/exec")
-      .success(function(data){
-        $scope.omcs = data;
-        //alert(omcs[0].name);
-        //alert($scope.body);
-      })
-      .error(function(data){
-        $scope.omcName = "Errorrrr";
-        //alert("Unsuccessful");
-        //alert("Something went wrong with Array in the function in app.js");
-      })*/
-  }
+        */
+  return  $scope.omcs = [{"name":"fake omc 1", "price":23}];
+}
 
-})
 
+
+
+
+//Working on services from this point on so that I can pass data between views
+
+
+//This is the one that should be working to pull all OMC's from database
 FPApp.controller("DieselController", function($scope,$http,$ionicLoading){
   $ionicLoading.show({template:"Loading prices..."})
   //Im puting the main operation outside the function so that it runs immediately
-
-  $http.get("https://script.google.com/macros/s/AKfycbx2tfQe5F4pEOdFpf99DM8rMWtg_B1JguFxugBIUPWz76IbEpk/exec")
+  // Apps script sample data JSON Beta link https://script.google.com/macros/s/AKfycbx2tfQe5F4pEOdFpf99DM8rMWtg_B1JguFxugBIUPWz76IbEpk/exec
+  $http.get("http://localhost:8888/omcsave")
         .success(function(data){
           $scope.omcs = data;
           //alert(omcs[0].name);
@@ -127,4 +113,55 @@ FPApp.controller("DieselController", function($scope,$http,$ionicLoading){
         $ionicLoading.hide();
   }
 
-);
+)
+
+//This was picked from the services.js from tabs starterpack
+FPSvc.factory('Chats', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var chats = [{
+    id: 0,
+    name: 'Ben Sparrow',
+    lastText: 'You on your way?',
+    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+  }, {
+    id: 1,
+    name: 'Max Lynx',
+    lastText: 'Hey, it\'s me',
+    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
+  }, {
+    id: 2,
+    name: 'Adam Bradleyson',
+    lastText: 'I should buy a boat',
+    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
+  }, {
+    id: 3,
+    name: 'Perry Governor',
+    lastText: 'Look at my mukluks!',
+    face: 'https://pbs.twimg.com/profile_images/598205061232103424/3j5HUXMY.png'
+  }, {
+    id: 4,
+    name: 'Mike Harrington',
+    lastText: 'This is wicked good ice cream.',
+    face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
+  }];
+
+  return {
+    all: function() {
+      return chats;
+    },
+    remove: function(chat) {
+      chats.splice(chats.indexOf(chat), 1);
+    },
+    get: function(chatId) {
+      for (var i = 0; i < chats.length; i++) {
+        if (chats[i].id === parseInt(chatId)) {
+          return chats[i];
+        }
+      }
+      return null;
+    }
+  };
+});
+;
