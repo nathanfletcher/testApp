@@ -115,6 +115,16 @@ FPApp.controller("DieselController", function($scope,$http,$ionicLoading){
 
 )
 
+//This controller shows and hides details
+testFetch.controller("toggleShowCtrl",function($scope) {
+                                          $scope.myVar = true;
+                                          $scope.otherVar=false;
+                                          $scope.toggle = function() {
+                                              $scope.myVar = !$scope.myVar;
+                                              $scope.otherVar = !$scope.otherVar;
+                                          }
+                                          });
+
 //This was picked from the services.js from tabs starterpack
 FPSvc.factory('Chats', function() {
   // Might use a resource here that returns a JSON array

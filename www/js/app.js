@@ -164,7 +164,7 @@ var testFetch = angular.module('starter', ['ionic', 'starter.controllers'])
 
   //Im puting the main operation outside the function so that it runs immediately
   //setTimeout(this, 3000)
-  $http.get("http://127.0.0.1:8888/omcread")
+  $http.get("http://fuelpostapp.appspot.com/omcread")
         .success(function(data){
           $scope.omcs = data;
           //alert(omcs[0].name);

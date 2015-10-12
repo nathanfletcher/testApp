@@ -1,11 +1,22 @@
 <ion-view view-title="Fuel Post App - Diesel">
   <!-- Uncomment to let the controller called 'FuelController' work as soon as the page loads-->
-    <ion-content >
-
-      <!-- Trying out loop since the JSON is now working -->
-      <div class="card" ng-repeat="omc in omcs" >
-        <a class="item item-text-wrap" href="#/app/playlists/{{playlist.id}}"> {{omc.name}}<h3 id="thePrice" style="float:right;">GHS {{omc.diesel}}</h3></a>
-
+  <ion-content >
+    <!--Experimental content to pull refresh-->
+    <ion-refresher pulling-text="Check prices" on-refresh="alert('Hello');"></ion-refresher>
+    <!-- Trying out loop since the JSON is now working -->
+    <div class="card" ng-repeat="omc in omcs" ng-controller="toggleShowCtrl" >
+      <div class="row" ng-hide="myVar"  ng-click="toggle()">
+        <div class="col"></div>
+        <h2><a  class="col  col-offset-33" >{{omc.name}}</a></h2>
+        <div class="col"></div>
+      </div>
+      <a ng-click="toggle()" class="item item-text-wrap" ng-hide="otherVar"> {{omc.name}}<h2 id="thePrice" style="float:right;">GHS {{omc.diesel}}</h2></a>
+      <div ng-hide="myVar">
+        <ul class="list">
+          <li class="item item-text-wrap">Petrol:<p style="float:right;">GHS {{omc.petrol}}</p></li>
+          <li class="item item-text-wrap">Diesel:<p style="float:right;">GHS {{omc.diesel}}</p></li>
+          <li class="item item-text-wrap">Kerosene:<p style="float:right;">GHS {{omc.kerosene}}</p></li>
+        </ul>
       </div>
 
   </ion-content>
