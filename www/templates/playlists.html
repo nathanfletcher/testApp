@@ -1,15 +1,35 @@
-<ion-view view-title="Fuel Prices - Petrol">
+<ion-view view-title="Fuel Prices">
   <!-- Uncomment to let the controller called 'FuelController' work as soon as the page loads-->
-  <ion-content >
-    <!--Experimental content to pull refresh-->
-    <ion-refresher pulling-text="Check prices" on-refresh="alert('Hello');"></ion-refresher>
+  <ion-content class="scroll-bg">
+    <!--Experimental content to pull refresh
+    <ion-refresher pulling-text="Check prices" on-refresh="alert('Hello');"></ion-refresher>-->
     <!-- Trying out loop since the JSON is now working -->
-    <div class="card" ng-repeat="omc in omcs" ng-controller="toggleShowCtrl" >
+
+    <div class="" ng-controller="toggleShowCtrl">
+
+
+      <div class="row list list-inset"  style="background-color:white;">
+
+        <div class="col item item-icon-right" ng-click="toggle()"  ng-hide="otherVar"><a class="" href="#/app/petrol"><h2>Petrol</h2><i class="icon ion-chevron-down" ></i></a></div>
+
+      </div>
+      <div class=" list list-inset">
+        <ion-item ng-hide="myVar"  ng-click="toggle()" class="item item-icon-right"><a href="#">Petrol</a><i class="icon ion-chevron-up"></i></ion-item>
+        <ion-item ng-hide="myVar"  ><a href="#/app/diesel" class="item">Diesel </a></ion-item>
+        <ion-item ng-hide="myVar" ><a href="#/app/kerosene" class="item">Kerosene </a></ion-item>
+      </div>
+
+
+    </div>
+
+    <ion-list>
+
+    <ion-item class="card" ng-repeat="omc in omcs" ng-controller="toggleShowCtrl" >
       <div class="row" ng-hide="myVar"  ng-click="toggle()">
         <div class="col"></div>
-        <h2><a  class="col  col-offset-33" >{{omc.name}}</a></h2>
+        <h2><a  class="col" >{{omc.name}}</a></h2>
         <div class="col"></div>
-      </div>
+    </div>
       <a ng-click="toggle()" class="item item-text-wrap" ng-hide="otherVar"> {{omc.name}}<h2 id="thePrice" style="float:right;">GHS {{omc.petrol}}</h2></a>
       <div ng-hide="myVar">
         <ul class="list">
@@ -18,7 +38,8 @@
           <li class="item item-text-wrap">Kerosene:<p style="float:right;">GHS {{omc.kerosene}}</p></li>
         </ul>
       </div>
-
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
 

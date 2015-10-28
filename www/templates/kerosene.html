@@ -1,13 +1,15 @@
 <ion-view view-title="Fuel Post App - Kerosene">
   <!-- Uncomment to let the controller called 'FuelController' work as soon as the page loads-->
-  <ion-content >
+  <ion-content class="scroll-bg">
     <!--Experimental content to pull refresh-->
     <ion-refresher pulling-text="Check prices" on-refresh="alert('Hello');"></ion-refresher>
     <!-- Trying out loop since the JSON is now working -->
-    <div class="card" ng-repeat="omc in omcs" ng-controller="toggleShowCtrl" >
+    <ion-list>
+
+    <ion-item class="card" ng-repeat="omc in omcs" ng-controller="toggleShowCtrl" >
       <div class="row" ng-hide="myVar"  ng-click="toggle()">
         <div class="col"></div>
-        <h2><a  class="col  col-offset-33" >{{omc.name}}</a></h2>
+        <h2><a  class="col" >{{omc.name}}</a></h2>
         <div class="col"></div>
       </div>
       <a ng-click="toggle()" class="item item-text-wrap" ng-hide="otherVar"> {{omc.name}}<h2 id="thePrice" style="float:right;">GHS {{omc.kerosene}}</h2></a>
@@ -18,7 +20,8 @@
           <li class="item item-text-wrap">Kerosene:<p style="float:right;">GHS {{omc.kerosene}}</p></li>
         </ul>
       </div>
-
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
 

@@ -119,46 +119,6 @@ var testFetch = angular.module('starter', ['ionic', 'starter.controllers'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 })
-.service('omcdata', function($http){
-    /*
-    return{
-            omcs: function(){
-                            var stuff = [{"name":"fake omc 1", "price":23}];
-                            $http.get("http://localhost:8888/omcread")
-                                    .success(function(dataobj){
-                                        var stuff = dataobj;
-                                        })
-                                    .error(function(dataobj){
-                                    }),
-            getOmcs: function(){
-                        return this.omcs
-                    },
-
-            getOmc: function (omcId){
-                        var dfd = $q.defer()
-                        this.omcs.forEach(function (omc){
-                            if(omc.name === omcId) dfd.resolve(omc)
-                        })
-                        return dfd.promise
-                    }
-                        }
-
-    }
-    */
-    //var fillings=[{'name':'Shell','petrol':99.0,'diesel':99.0,'kerosene':99.0}];
-
-    this.getAllOmcs = function(){
-        $http.get("http://localhost:8888/omcread")
-        .success(function(dataobj){
-            var omcs = dataobj;
-            return dataobj;
-            })
-        .error(function(dataobj){
-        })
-    };
-
-    //return fillings;
-})
 .controller("FuelController", function($scope,$http,$ionicLoading){
   $ionicLoading.show({template:"Loading prices..."});
 
@@ -172,7 +132,16 @@ var testFetch = angular.module('starter', ['ionic', 'starter.controllers'])
         })
         .error(function(data){
           $scope.err = "Check Iternet connection";
-          alert("Please check your Internet connection and try again");
+          //alert("Please check your Internet connection and try again");
+           $scope.showAlert = function() {
+               var alertPopup = $ionicPopup.alert({
+                 title: 'Don\'t eat that!',
+                 template: 'It might taste good'
+               });
+               alertPopup.then(function(res) {
+                 console.log('Thank you for not eating my delicious ice cream cone');
+               });
+             };
           //alert("Something went wrong with Array in the function in app.js");
         })
         $ionicLoading.hide();

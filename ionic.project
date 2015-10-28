@@ -1,4 +1,12 @@
 {
-  "name": "testApp",
-  "app_id": "fce31a93"
+  "name": "FuelPostMobile",
+  "app_id": "fce31a93",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

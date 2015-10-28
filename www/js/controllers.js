@@ -41,22 +41,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-
-})
-
-
+/*
 //Nathan creating his own controller - DOES NOT WORK!
 .controller('OmcCtrl', function($scope) {
 
@@ -71,7 +56,7 @@ angular.module('starter.controllers', [])
         })
 
 })
-
+*/
 //These are new controllers created to test out OMC details
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
