@@ -119,46 +119,52 @@ var testFetch = angular.module('starter', ['ionic', 'starter.controllers'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 })
-.controller("FuelController", function($scope,$http,$ionicLoading){
-  $ionicLoading.show({template:"Loading prices..."});
+.controller("FuelController", function($scope,$http,$ionicLoading,$timeout,$ionicPopup){
+
+  // Setup the loader
+  $ionicLoading.show({
+    content: 'Loading',
+    animation: 'fade-in',
+    showBackdrop: true,
+    maxWidth: 200,
+    showDelay: 0
+  });
+
+
+  // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
+    $timeout(function () {
+
 
   //Im puting the main operation outside the function so that it runs immediately
   //setTimeout(this, 3000)
   $http.get("http://fuelpostapp.appspot.com/omcread")
         .success(function(data){
           $scope.omcs = data;
+
+          $ionicLoading.hide();
+
+          $scope.hide = function(){
+              $ionicLoading.hide();
+            };
+
           //alert(omcs[0].name);
           //alert($scope.body);
         })
         .error(function(data){
           $scope.err = "Check Iternet connection";
           //alert("Please check your Internet connection and try again");
-           $scope.showAlert = function() {
-               var alertPopup = $ionicPopup.alert({
-                 title: 'Don\'t eat that!',
-                 template: 'It might taste good'
-               });
-               alertPopup.then(function(res) {
-                 console.log('Thank you for not eating my delicious ice cream cone');
-               });
-             };
+          var alertPopup = $ionicPopup.alert({
+               title: 'Bad Connection',
+               template: 'Please check your Internet connection'
+             });
+             alertPopup.then(function(res) {
+               console.log('Thank you for not eating my delicious ice cream cone');
+             });
           //alert("Something went wrong with Array in the function in app.js");
         })
+
         $ionicLoading.hide();
-  $scope.getData = function (){
-  /*
-  $http.get("https://script.google.com/macros/s/AKfycbx2tfQe5F4pEOdFpf99DM8rMWtg_B1JguFxugBIUPWz76IbEpk/exec")
-      .success(function(data){
-        $scope.omcs = data;
-        //alert(omcs[0].name);
-        //alert($scope.body);
-      })
-      .error(function(data){
-        $scope.omcName = "Errorrrr";
-        //alert("Unsuccessful");
-        //alert("Something went wrong with Array in the function in app.js");
-      })*/
-  }
+            }, 2000);
 
 })
 .controller("AllOMCController", function($scope, omcdata){
@@ -168,5 +174,23 @@ var testFetch = angular.module('starter', ['ionic', 'starter.controllers'])
     //$scope.fs = omcdata.getOmcData;
     alert($scope.fill[0].name);
   }
-);
+)
+.controller("OmcNews", function($scope, $http, $timeout, $ionicLoading){
+
+
+  // Setup the loader
+  $ionicLoading.show({
+    content: 'Loading',
+    animation: 'fade-in',
+    showBackdrop: true,
+    maxWidth: 200,
+    showDelay: 0
+  });
+
+  // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
+  $timeout(function () {
+    $ionicLoading.hide();
+    $scope.stooges = [{name: 'Moe'}, {name: 'Larry'}, {name: 'Curly'}];
+  }, 2000);
+});
 

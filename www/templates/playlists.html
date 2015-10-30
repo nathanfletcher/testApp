@@ -1,4 +1,4 @@
-<ion-view view-title="Fuel Prices">
+<ion-view view-title="Fuel Prices - Petrol">
   <!-- Uncomment to let the controller called 'FuelController' work as soon as the page loads-->
   <ion-content class="scroll-bg">
     <!--Experimental content to pull refresh
@@ -23,12 +23,12 @@
         <h2><a  class="col" >{{omc.name}}</a></h2>
         <div class="col"></div>
     </div>
-      <a ng-click="toggle()" class="item item-text-wrap" ng-hide="otherVar"> {{omc.name}}<h2 id="thePrice" style="float:right;">GHS {{omc.petrol}}</h2></a>
+      <a ng-click="toggle()" class="item item-text-wrap" ng-hide="otherVar"> {{omc.name}}<h2 id="thePrice" style="float:right;">GHS {{(omc.petrol * 3.78).toFixed(2)}} <br><small class="item-note"> (Per Gallon / 3.78 litres)</small></h2></a>
       <div ng-hide="myVar">
         <ul class="list">
-          <li class="item item-text-wrap">Petrol:<p style="float:right;">GHS {{omc.petrol}}</p></li>
-          <li class="item item-text-wrap">Diesel:<p style="float:right;">GHS {{omc.diesel}}</p></li>
-          <li class="item item-text-wrap">Kerosene:<p style="float:right;">GHS {{omc.kerosene}}</p></li>
+          <li class="item item-text-wrap">Petrol: <h2 id="thePrice" style="float:right;"> GHS {{omc.petrol}} <br><small class="item-note"> (Per Litre)</small></h2> </li>
+          <li class="item item-text-wrap">Diesel: <h2 id="thePrice" style="float:right;"> GHS {{omc.diesel}} <br><small class="item-note"> (Per Litre)</small></h2></li>
+          <li class="item item-text-wrap">Kerosene: <h2 id="thePrice" style="float:right;"> GHS {{omc.kerosene}} <br><small class="item-note"> (Per Litre)</small></h2></li>
         </ul>
       </div>
       </ion-item>
