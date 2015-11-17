@@ -107,3 +107,9 @@ testFetch.controller("toggleShowCtrl",function($scope) {
                                               $scope.otherVar = !$scope.otherVar;
                                           }
                                           });
+
+
+function init() {
+                //Parameters are APIName,APIVersion,CallBack function,API Root
+                gapi.client.load('fuelpost', 'v1', null, 'http://fuelpostapp.appspot.com/_ah/api');
+        }

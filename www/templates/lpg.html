@@ -1,19 +1,19 @@
-<ion-view view-title="Fuel Post App - Diesel">
+<ion-view view-title="Fuel Post App - L.P.G">
   <!-- Uncomment to let the controller called 'FuelController' work as soon as the page loads-->
   <ion-content class="scroll-bg">
-    <!--Experimental content to pull refresh--
+    <!--Experimental content to pull refresh-
     <ion-refresher pulling-text="Check prices" on-refresh="alert('Hello');"></ion-refresher>
     <!-- Trying out loop since the JSON is now working -->
 
     <!-- custom navigation dropdown -->
     <div class="" ng-controller="toggleShowCtrl">
-      <ion-item class="item item-icon-right" ng-click="toggle()"  ng-hide="otherVar" href="#/app/diesel" ><h2>Diesel</h2><i class="icon ion-chevron-down" ></i></ion-item>
+      <ion-item class="item item-icon-right" ng-click="toggle()"  ng-hide="otherVar" href="#/app/lpg" ><h2>L.P.G</h2><i class="icon ion-chevron-down" ></i></ion-item>
 
       <ion-list class=" list list-inset">
-        <ion-item ng-hide="myVar" href="#/app/diesel"  ng-click="toggle()" class="item item-icon-right">Diesel<i class="icon ion-chevron-up"></i></ion-item>
-        <ion-item ng-hide="myVar" href="#/app/playlists" class="item" >Petrol </ion-item>
+        <ion-item ng-hide="myVar" href="#/app/lpg"  ng-click="toggle()" class="item item-icon-right">L.P.G<i class="icon ion-chevron-up"></i></ion-item>
+        <ion-item ng-hide="myVar" href="#/app/diesel" class="item" >Diesel </ion-item>
+        <ion-item ng-hide="myVar" href="#/app/playlists" class="item">Petrol </ion-item>
         <ion-item ng-hide="myVar" href="#/app/kerosene" class="item">Kerosene </ion-item>
-        <ion-item ng-hide="myVar" href="#/app/lpg" class="item">L.P.G </ion-item>
       </ion-list>
     </div>
 
@@ -25,7 +25,7 @@
         <h2><a  class="col" >{{omc.name}}</a></h2>
         <div class="col"></div>
       </div>
-      <a ng-click="toggle()" class="item item-text-wrap" ng-hide="otherVar"> {{omc.name}}<h2 id="thePrice" style="float:right;">GHS {{(omc.recentDiesel * 3.78).toFixed(2)}} <br><small class="item-note"> (Per Gallon / 3.78 litres)</small></h2></a>
+      <a ng-click="toggle()" class="item item-text-wrap" ng-hide="otherVar"> {{omc.name}}<h2 id="thePrice" style="float:right;">GHS {{(omc.recentLpg * 3.78).toFixed(2)}} <br><small class="item-note"> (Per Gallon / 3.78 litres)</small></h2></a>
       <div ng-hide="myVar">
         <ul class="list">
           <li class="item item-text-wrap">Petrol: <h2 id="thePrice1" style="float:right;"> GHS {{omc.recentPetrol}} <br><small class="item-note"> (Per Litre)</small></h2> </li>

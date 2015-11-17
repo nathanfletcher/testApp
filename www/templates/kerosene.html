@@ -13,6 +13,7 @@
         <ion-item ng-hide="myVar" href="#/app/kerosene"  ng-click="toggle()" class="item item-icon-right">Kerosene<i class="icon ion-chevron-up"></i></ion-item>
         <ion-item ng-hide="myVar" href="#/app/diesel" class="item" >Diesel </ion-item>
         <ion-item ng-hide="myVar" href="#/app/playlists" class="item">Petrol </ion-item>
+        <ion-item ng-hide="myVar" href="#/app/lpg" class="item">L.P.G </ion-item>
       </ion-list>
     </div>
 
@@ -24,12 +25,14 @@
         <h2><a  class="col" >{{omc.name}}</a></h2>
         <div class="col"></div>
       </div>
-      <a ng-click="toggle()" class="item item-text-wrap" ng-hide="otherVar"> {{omc.name}}<h2 id="thePrice" style="float:right;">GHS {{omc.kerosene}}</h2></a>
+      <a ng-click="toggle()" class="item item-text-wrap" ng-hide="otherVar"> {{omc.name}}<h2 id="thePrice" style="float:right;">GHS {{(omc.recentKerosene * 3.78).toFixed(2)}} <br><small class="item-note"> (Per Gallon / 3.78 litres)</small></h2></a>
       <div ng-hide="myVar">
         <ul class="list">
-          <li class="item item-text-wrap">Petrol:<p style="float:right;">GHS {{omc.petrol}}</p></li>
-          <li class="item item-text-wrap">Diesel:<p style="float:right;">GHS {{omc.diesel}}</p></li>
-          <li class="item item-text-wrap">Kerosene:<p style="float:right;">GHS {{omc.kerosene}}</p></li>
+          <li class="item item-text-wrap">Petrol: <h2 id="thePrice1" style="float:right;"> GHS {{omc.recentPetrol}} <br><small class="item-note"> (Per Litre)</small></h2> </li>
+          <li class="item item-text-wrap">Diesel: <h2 id="thePrice2" style="float:right;"> GHS {{omc.recentDiesel}} <br><small class="item-note"> (Per Litre)</small></h2></li>
+          <li class="item item-text-wrap">Kerosene: <h2 id="thePrice3" style="float:right;"> GHS {{omc.recentKerosene}} <br><small class="item-note"> (Per Litre)</small></h2></li>
+          <li class="item item-text-wrap">L.P.G: <h2 id="thePrice4" style="float:right;"> GHS {{omc.recentLpg}} <br><small class="item-note"> (Per Litre)</small></h2></li>
+          <li class="item item-text-wrap" ng-controller="ShareController"><button class="button ion-paper-airplane" ng-click="shareAnywhere()">Share</button></li>
         </ul>
       </div>
       </ion-item>
